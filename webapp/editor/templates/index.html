@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Charles Dickens's Style Text Generator</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <body>
+        <div class="Wrapper">
+            <h1 class="Title">Writing with Charles Dickens</h1>
+            <h3 style="color: #fff;">Press TAB for autocompletion.</h3>
+            <div class="Input">
+                <label for="input" class="Input-label">Your Text</label>
+                <textarea name="usertext" id="input" cols="40" rows="5" class="Input-text"></textarea>
+            </div>
+        </div>
+    </body>
+
+    <script>
+         document.getElementById("input").value = "";
+         function suggest(){
+            inputText = document.getElementById("input").value
+            seed = inputText.slice(-50)
+            console.log(seed)
+            fetch("http://127.0.0.1:5000/api/text?seed="+seed)
+            .then(function(response){
+                response.text().then(function(text){
+                    document.getElementById("input").value = inputText.slice(0, inputText.length-50) + text.trim()
+                });
+            });
+         }
+        document.querySelector("#input").addEventListener('keydown',function(e) {
+            if(e.keyCode === 9) { // tab was pressed
+                
+                suggest()
+
+                e.preventDefault();
+            }
+        },false);
+    </script>
+    
+</html>
