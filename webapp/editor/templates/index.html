@@ -26,7 +26,7 @@
             fetch("http://127.0.0.1:5000/api/text?seed="+seed)
             .then(function(response){
                 response.text().then(function(text){
-                    document.getElementById("input").value = inputText.slice(0, inputText.length-50) + text.trim()
+                    document.getElementById("input").value = inputText + text.trim().slice(50)
                 });
             });
          }
