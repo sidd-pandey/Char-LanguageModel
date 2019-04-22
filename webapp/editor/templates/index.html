@@ -9,7 +9,9 @@
     <body>
         <div class="Wrapper">
             <h1 class="Title">Writing with Charles Dickens</h1>
-            <h3 style="color: #fff;">Press TAB for autocompletion.</h3>
+            <div>
+                <h3 style="color: #fff; display: inline;" id="status">Press TAB for autocompletion.</h3>
+            </div>
             <div class="Input">
                 <label for="input" class="Input-label">Your Text</label>
                 <textarea name="usertext" id="input" cols="40" rows="5" class="Input-text"></textarea>
@@ -20,6 +22,7 @@
     <script>
          document.getElementById("input").value = "";
          function suggest(){
+            document.getElementById("status").innerHTML = "Asking Mr.Dickens for tips..."
             inputText = document.getElementById("input").value
             seed = inputText.slice(-50)
             console.log(seed)
@@ -27,6 +30,7 @@
             .then(function(response){
                 response.text().then(function(text){
                     document.getElementById("input").value = inputText + text.trim().slice(50)
+                    document.getElementById("status").innerHTML = "Press TAB for autocompletion."
                 });
             });
          }
