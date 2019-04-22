@@ -1,8 +1,0 @@
-Flask==1.0.2
-Flask-Cors==3.0.7
-gunicorn==19.9.0
-Keras==2.2.4
-numpy==1.16.2
-tensorboard==1.10.0
-tensorflow==1.10.0
-tensorflow-tensorboard==1.5.1
